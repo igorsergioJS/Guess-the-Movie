@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Acerte o Filme</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            width: 300px;
+            height: 450px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #poster {
+            display: block;
+            margin: 0 auto;
+            width: 300px;
+            height: 450px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .grid-square {
+            position: absolute;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 1);
+            cursor: pointer;
+            transition: background-color 0.5s;
+        }
+
+        .search-container {
+  text-align: center;
+  margin-top: 70px;
+  clear: both;
+  position: relative;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+}
+
+#guess-input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  width: 300px;
+}
+
+button {
+  background-color: #4CAF50; /* Cor de fundo */
+  color: white; /* Cor do texto */
+  padding: 10px 20px; /* Espaçamento interno (vertical horizontal) */
+  font-size: 16px; /* Tamanho da fonte */
+  border: none; /* Remover borda */
+  cursor: pointer; /* Mostrar cursor como ponteiro ao passar o mouse */
+  border-radius: 4px; /* Arredondar bordas */
+  text-decoration: none; /* Remover decoração de texto */
+}
+
+button:hover {
+  background-color: #45a049; /* Cor de fundo ao passar o mouse */
+}
+
+/* #suggestions-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#suggestions-list li {
+  cursor: pointer;
+  padding: 5px;
+}
+
+#suggestions-list li:hover {
+  background-color: #f2f2f2;
+} */
+
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.getJSON("data.json", function(data) {
+                var randomIndex = Math.floor(Math.random() * data.items.length);
+                var movie = data.items[randomIndex];
+                var poster = movie.image || ""; // Verifica se a propriedade 'image' existe
+                var title = movie.title;
+                movieGlobalName = title;
+                console.log(title);
+                $("#poster").attr("src", poster);
+
+                $(".grid-square").click(function() {
+                    $(this).fadeOut(500);
+                });
+
+                $("#title").text(title);
+            }).fail(function() {
+                console.log("Ocorreu um erro ao carregar o arquivo JSON.");
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="geral">
+        <div class="container">
+            <div>
+                <img id="poster" src="" alt="Poster do Filme">
+                <div class="grid-square" style="top: 0; left: 0; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 0; left: 12.5%; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 0; left: 25%; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 0; left: 37.5%; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 0; left: 50%; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 0; left: 62.5%; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 0; left: 75%; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 0; left: 87.5%; width: 12.5%; height: 12.5%;"></div>
+    
+                <div class="grid-square" style="top: 12.5%; left: 0; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 12.5%; left: 12.5%; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 12.5%; left: 25%; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 12.5%; left: 37.5%; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 12.5%; left: 50%; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 12.5%; left: 62.5%; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 12.5%; left: 75%; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 12.5%; left: 87.5%; width: 12.5%; height: 12.5%;"></div>
+    
+                <div class="grid-square" style="top: 25%; left: 0; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 25%; left: 12.5%; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 25%; left: 25%; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 25%; left: 37.5%; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 25%; left: 50%; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 25%; left: 62.5%; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 25%; left: 75%; width: 12.5%; height: 12.5%;"></div>
+                <div class="grid-square" style="top: 25%; left: 87.5%; width: 12.5%; height: 12.5%;"></div>
+    
+                <div class="grid-square" style="top: 37.5%; left: 0; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 37.5%; left: 12.5%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 37.5%; left: 25%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 37.5%; left: 37.5%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 37.5%; left: 50%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 37.5%; left: 62.5%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 37.5%; left: 75%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 37.5%; left: 87.5%; width: 12.5%; height: 12.5%;"></div>
+
+<div class="grid-square" style="top: 50%; left: 0; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 50%; left: 12.5%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 50%; left: 25%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 50%; left: 37.5%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 50%; left: 50%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 50%; left: 62.5%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 50%; left: 75%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 50%; left: 87.5%; width: 12.5%; height: 12.5%;"></div>
+
+<div class="grid-square" style="top: 62.5%; left: 0; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 62.5%; left: 12.5%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 62.5%; left: 25%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 62.5%; left: 37.5%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 62.5%; left: 50%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 62.5%; left: 62.5%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 62.5%; left: 75%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 62.5%; left: 87.5%; width: 12.5%; height: 12.5%;"></div>
+
+<div class="grid-square" style="top: 75%; left: 0; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 75%; left: 12.5%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 75%; left: 25%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 75%; left: 37.5%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 75%; left: 50%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 75%; left: 62.5%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 75%; left: 75%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 75%; left: 87.5%; width: 12.5%; height: 12.5%;"></div>
+
+<div class="grid-square" style="top: 87.5%; left: 0; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 87.5%; left: 12.5%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 87.5%; left: 25%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 87.5%; left: 37.5%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 87.5%; left: 50%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 87.5%; left: 62.5%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 87.5%; left: 75%; width: 12.5%; height: 12.5%;"></div>
+<div class="grid-square" style="top: 87.5%; left: 87.5%; width: 12.5%; height: 12.5%;"></div>
+            </div>
+    </div>
+    <div class="search-container">
+        <input type="text" id="guess-input" placeholder="Digite o nome do filme" oninput="showSuggestions() ">   
+        <!-- oninput="showSuggestions() -->
+        <button onclick="checkGuess()">Enviar</button>
+      </div>
+    <ul id="suggestions-list"></ul>
+ 
+</div>
+<script>
+  // Carregar o JSON dos filmes
+  var movies = []; // Array para armazenar os filmes
+
+  fetch('data.json')
+    .then(response => response.json())
+    .then(data => {
+      movies = data.items; // Armazenar os filmes no array
+    })
+    .catch(error => console.error('Ocorreu um erro ao carregar o JSON:', error));
+
+  // Mostrar as sugestões de pesquisa
+  function showSuggestions() {
+    var input = document.getElementById('guess-input').value.toLowerCase();
+    var suggestionsList = document.getElementById('suggestions-list');
+    suggestionsList.innerHTML = ''; // Limpar a lista de sugestões
+
+    if (input.length > 0) {
+      // Filtrar os filmes com base no input
+      var filteredMovies = movies.filter(function(movie) {
+        return movie.title.toLowerCase().startsWith(input);
+      });
+
+      // Exibir as sugestões de filmes
+      filteredMovies.forEach(function(movie) {
+        var listItem = document.createElement('li');
+        listItem.textContent = movie.title;
+        listItem.addEventListener('click', function() {
+          document.getElementById('guess-input').value = movie.title;
+          suggestionsList.innerHTML = ''; // Limpar a lista de sugestões
+        });
+        suggestionsList.appendChild(listItem);
+      });
+    }
+  }
+
+  // Verificar o palpite do usuário
+  function checkGuess() {
+    var input = document.getElementById('guess-input').value;
+    var filmName = movieGlobalName; 
+
+    if (input.toLowerCase() === filmName.toLowerCase()) {
+      alert("Parabéns! Você acertou o nome do filme!");
+    } else {
+      alert("Ops! Tente novamente.");
+    }
+  }
+</script>
+      
+</body>
+</html>

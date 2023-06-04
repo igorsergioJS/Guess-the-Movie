@@ -44,52 +44,79 @@ h1 {
 }
 
 .search-container {
-text-align: center;
-margin-top: 70px;
-clear: both;
-position: relative;
-bottom: 20px;
-left: 0;
-right: 0;
+    text-align: center;
+    margin-top: 70px;
+    clear: both;
+    position: relative;
+    bottom: 20px;
+    left: 0;
+    right: 0;
 }
 
 #guess-input {
-padding: 10px;
-border-radius: 5px;
-border: 1px solid #ccc;
-font-size: 16px;
-width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 300px;
 }
 
 button {
-background-color: #4CAF50; /* Cor de fundo */
-color: white; /* Cor do texto */
-padding: 10px 20px; /* Espaçamento interno (vertical horizontal) */
-font-size: 16px; /* Tamanho da fonte */
-border: none; /* Remover borda */
-cursor: pointer; /* Mostrar cursor como ponteiro ao passar o mouse */
-border-radius: 4px; /* Arredondar bordas */
-text-decoration: none; /* Remover decoração de texto */
+    background-color: #4CAF50;
+    /* Cor de fundo */
+    color: white;
+    /* Cor do texto */
+    padding: 10px 20px;
+    /* Espaçamento interno (vertical horizontal) */
+    font-size: 16px;
+    /* Tamanho da fonte */
+    border: none;
+    /* Remover borda */
+    cursor: pointer;
+    /* Mostrar cursor como ponteiro ao passar o mouse */
+    border-radius: 4px;
+    /* Arredondar bordas */
+    text-decoration: none;
+    /* Remover decoração de texto */
 }
 
 button:hover {
-background-color: #45a049; /* Cor de fundo ao passar o mouse */
+    background-color: #45a049;
+    /* Cor de fundo ao passar o mouse */
 }
 
 #suggestions-list {
-list-style: none;
-padding: 0;
-margin-top: 10px;
-max-width: 320px;
-margin-left: auto;
-margin-right: auto;
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #suggestions-list li {
-cursor: pointer;
-padding: 5px;
+    cursor: pointer;
+    padding: 5px;
 }
 
 #suggestions-list li:hover {
-background-color: #f2f2f2;
-} 
+    background-color: #f2f2f2;
+}
+
+.counter-container {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  #counter {
+    font-size: 24px;
+  }
+
+
+  .error {
+    color: red;
+  }
+  
+  .success {
+    color: green;
+  }

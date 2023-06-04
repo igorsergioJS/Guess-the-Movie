@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  
+  <meta charset="UTF-8">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="popcorn.ico" type="image/x-icon">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -91,6 +91,14 @@
       </div>
     </div>
     <div class="search-container">
+
+      <div class="counter-container">
+    
+        <p id="counter">Espaços revelados: 0</p>
+      </div>
+
+      <div id="result-container"> </div>
+
       <input type="text" id="guess-input" placeholder="Digite o nome do filme" oninput="showSuggestions() ">
 
       <button onclick="checkGuess()">Enviar</button>

@@ -36,26 +36,28 @@ fetch('https://raw.githubusercontent.com/igorsergioJS/Guess-the-Movie/main/data.
 function showSuggestions() {
     var input = document.getElementById('guess-input').value.toLowerCase();
     var suggestionsList = document.getElementById('suggestions-list');
-    suggestionsList.innerHTML = ''; // Limpar a lista de sugestões
+    suggestionsList.innerHTML = ''; // Clear the suggestions list
 
     if (input.length > 0) {
-        // Filtrar os filmes com base no input
+        // Filter movies based on input
         var filteredMovies = movies.filter(function (movie) {
             return movie.title.toLowerCase().startsWith(input);
         });
 
-        // Exibir as sugestões de filmes
-        filteredMovies.forEach(function (movie) {
+        // Display up to 4 movie suggestions
+        for (var i = 0; i < filteredMovies.length && i < 4; i++) {
+            var movie = filteredMovies[i];
             var listItem = document.createElement('li');
             listItem.textContent = movie.title;
             listItem.addEventListener('click', function () {
-                document.getElementById('guess-input').value = movie.title;
-                suggestionsList.innerHTML = ''; // Limpar a lista de sugestões
+                document.getElementById('guess-input').value = this.textContent;
+                suggestionsList.innerHTML = ''; // Clear the suggestions list
             });
             suggestionsList.appendChild(listItem);
-        });
+        }
     }
 }
+
 
 // Verificar o palpite do usuário
 function checkGuess() {
@@ -64,18 +66,17 @@ function checkGuess() {
     var resultContainer = document.getElementById('result-container');
   
     if (input.toLowerCase() === filmName.toLowerCase()) {
-      resultContainer.textContent = "Parabéns! Você acertou o nome do filme!";
+      resultContainer.textContent = "Congratulations! You guessed the movie !";
       resultContainer.classList.remove('error');
       resultContainer.classList.add('success');
     } else {
-      resultContainer.textContent = "Ops! Tente novamente.";
+      resultContainer.textContent = "Ops! Try again.";
       resultContainer.classList.remove('success');
       resultContainer.classList.add('error');
     }
   }
 
-
 function updateCounter(flippedCount) {
     var counterElement = document.getElementById("counter");
-    counterElement.textContent = "Espaços revelados: " + flippedCount.toString();
+    counterElement.textContent = "Revealed rectangles: " + flippedCount.toString();
   }

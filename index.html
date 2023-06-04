@@ -8,12 +8,16 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="script.js"></script>
 
-  <title>Acerte o Filme</title>
+  <title>Guess the Movie</title>
 
 </head>
 
 <body>
+ 
   <div class="geral">
+
+    <h1>Guess the Movie</h1>
+    <p>Welcome to "Guess the Movie"! Your mission is to guess the name of the movie based on parts of its poster. Click on the rectangles to reveal parts of the poster and type your guess in the text box. Good luck!</p>
     <div class="container">
       <div>
         <img id="poster" src="" alt="Poster do Filme">
@@ -94,15 +98,14 @@
 
       <div class="counter-container">
     
-        <p id="counter">Espaços revelados: 0</p>
+        <p id="counter">Revealed Rectangles: 0</p>
       </div>
 
       <div id="result-container"> </div>
 
-      <input type="text" id="guess-input" placeholder="Digite o nome do filme" oninput="showSuggestions() ">
-      <button onclick="checkGuess()">Enviar</button>
+      <input type="text" id="guess-input" placeholder="Enter the movie name" oninput="showSuggestions() ">
+      <button onclick="checkGuess()">Guess</button>
       
-
     </div>
     
 
